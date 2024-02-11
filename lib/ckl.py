@@ -323,7 +323,7 @@ def ckl_prob_dist(d_ij, d_ik, mu=0.1):
 
 
 def project_rank(K, dim):
-    D, U = torch.symeig(K, eigenvectors=True)  # will K be surely symmetric?
+    D, U = torch.linalg.eigh(K, UPLO='U')  # if upper else 'L' will K be surely symmetric?
     D = torch.max(D[-dim:], torch.Tensor([0]).to(K.device))
     return torch.mm(torch.mm(U[:, -dim:], torch.diag(D)), torch.transpose(U[:, -dim:], 0, 1))
 

@@ -184,7 +184,7 @@ def gen_triplet_data(data, random_triplet_indices, batch_size):
     :return:
     """
     num_triplets = random_triplet_indices.shape[0]  # Compute the number of triplets.
-    number_of_batches = np.int(np.ceil(num_triplets / batch_size))  # Number of batches
+    number_of_batches = int(np.ceil(num_triplets / batch_size))  # Number of batches
     triplet_set = np.zeros((num_triplets, 3), dtype=int)  # Initializing the triplet set
     for i in range(number_of_batches):
         if i == (number_of_batches - 1):
